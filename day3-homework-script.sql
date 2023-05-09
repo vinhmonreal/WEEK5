@@ -22,15 +22,17 @@ WHERE customer_id IN (
 	HAVING sum(amount) > 175)
 
 --4. List all customers that live in Nepal (use the city table)
-SELECT concat(first_name, '  ', last_name) full_name , country 
+
+SELECT concat(first_name, '  ', last_name) full_name, country  
 FROM country c 
 JOIN city c2 
-ON c.country_id = c2.city_id 
+ON c.country_id = c2.country_id
 JOIN address a 
 ON a.city_id = c2.city_id 
 JOIN customer c3 
 ON c3.address_id = a.address_id 
 WHERE country = 'Nepal'
+
 
 --5. Which staff member had the most transactions?
 SELECT staff_id , count(payment_id) total_transactions
